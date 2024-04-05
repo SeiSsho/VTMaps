@@ -1,0 +1,1 @@
+. "C:\Users\tts\Desktop\VTMaps\app\src\main\cpp\build\armv7\Release\generators\conanrunenv-release-armv7.sh"

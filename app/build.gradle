@@ -1,0 +1,76 @@
+plugins {
+    alias(libs.plugins.androidApplication)
+}
+
+task conanInstall {
+    def conanExecutable = "conan" // define the path to your conan installation
+    def buildDir = new File("app/build")
+    buildDir.mkdirs()
+    ["Debug", "Release"].each { String build_type ->
+        ["armv7", "armv8", "x86", "x86_64"].each { String arch ->
+            def cmd = conanExecutable + " install " +
+                    "../src/main/cpp --profile android -s build_type="+ build_type +" -s arch=" + arch +
+                    " --build missing -c tools.cmake.cmake_layout:build_folder_vars=['settings.arch']"
+            print(">> ${cmd} \n")
+
+            def sout = new StringBuilder(), serr = new StringBuilder()
+            def proc = cmd.execute(null, buildDir)
+            proc.consumeProcessOutput(sout, serr)
+            proc.waitFor()
+            println "$sout $serr"
+            if (proc.exitValue() != 0) {
+                throw new Exception("out> $sout err> $serr" + "\nCommand: ${cmd}")
+            }
+        }
+    }
+}
+
+android {
+    namespace 'com.thanhdo.vtmaps'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.thanhdo.vtmaps"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags '-std=c++17'
+                arguments("-DCMAKE_TOOLCHAIN_FILE=conan_android_toolchain.cmake")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}

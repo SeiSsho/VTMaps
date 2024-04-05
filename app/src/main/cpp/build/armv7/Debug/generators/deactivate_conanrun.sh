@@ -1,0 +1,1 @@
+. "C:\Users\tts\Desktop\VTMaps\app\src\main\cpp\build\armv7\Debug\generators\deactivate_conanrunenv-debug-armv7.sh"

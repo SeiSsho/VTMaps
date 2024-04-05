@@ -1,0 +1,41 @@
+{
+    "version": 3,
+    "vendor": {
+        "conan": {}
+    },
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 15,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "conan-armv8-debug",
+            "displayName": "'conan-armv8-debug' config",
+            "description": "'conan-armv8-debug' configure using 'Ninja' generator",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_POLICY_DEFAULT_CMP0091": "NEW",
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "environment": {
+                "PATH": "C:\\Users\\tts\\.conan2\\p\\ninjae2ad385cd85df\\p\\bin;$penv{PATH}"
+            },
+            "toolchainFile": "C:\\Users\\tts\\Desktop\\VTMaps\\app\\src\\main\\cpp\\build\\armv8\\Debug\\generators\\conan_toolchain.cmake",
+            "binaryDir": "C:\\Users\\tts\\Desktop\\VTMaps\\app\\src\\main\\cpp\\build\\armv8\\Debug"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "conan-armv8-debug",
+            "configurePreset": "conan-armv8-debug",
+            "jobs": 8
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "conan-armv8-debug",
+            "configurePreset": "conan-armv8-debug"
+        }
+    ]
+}

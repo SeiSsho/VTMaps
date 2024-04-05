@@ -1,0 +1,1 @@
+. "C:\Users\tts\Desktop\VTMaps\app\src\main\cpp\build\x86\Debug\generators\conanrunenv-debug-x86.sh"
