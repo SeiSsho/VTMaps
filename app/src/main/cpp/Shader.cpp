@@ -202,14 +202,14 @@ std::shared_ptr<Shader> Shader::CreateDefaultShader() {
             "varying vec2 vTexCoord;"
             "void main()                    \n"     // The entry point for our vertex shader.
             "{                              \n"
-            "   vColor = aColor;            \n"     // Pass the color through to the fragment shader.
+//            "   vColor = aColor;            \n"     // Pass the color through to the fragment shader.
             "   vTexCoord = aTexCoord;      \n"
             "   gl_Position = uMVP * vec4(aPosition, 1.0); \n"     // gl_Position is a special variable used to store the final position.
             "}                              \n";    // normalized screen coordinates.;
 
     const std::string fragSrc =
             "precision mediump float;       \n"     // Set the default precision to medium. We don't need as high of a
-            "varying vec4 vColor;           \n"     // This is the color from the vertex shader interpolated across the
+//            "varying vec4 vColor;           \n"     // This is the color from the vertex shader interpolated across the
             "varying vec2 vTexCoord;        \n"
             "uniform sampler2D uTexture;     \n"
             "void main()                    \n"     // The entry point for our fragment shader.

@@ -7,6 +7,8 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         graphics/GLUtils.h graphics/GLUtils.cpp
         graphics/Matrix.h graphics/Matrix.cpp
 
+        Utilities/JNIHelper.h Utilities/JNIHelper.cpp
+
         stb_impl.cpp
 
         Camera.h Camera.cpp

@@ -4,6 +4,8 @@
 #include <memory>
 #include "Camera.h"
 #include "Sphere.h"
+#include "Utilities/JNIHelper.h"
+
 
 
 class Viewer {

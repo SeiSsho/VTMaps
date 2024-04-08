@@ -37,7 +37,7 @@ public:
     bool ReadFileFromAssetsToBuffer(const char *filename, std::vector<uint8_t> *bufferRef);
 };
 
-extern JNIHelper *gHelperObject;
+extern JNIHelper *g_HelperObject;
 
 #ifdef __cplusplus
 }

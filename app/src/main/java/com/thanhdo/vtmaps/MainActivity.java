@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AssetManager _assetManager = getAssets();
-        final String _pathToInternalDirectory = getFilesDir().getAbsolutePath();
-        CreateObjectNative(_assetManager, _pathToInternalDirectory);
+        AssetManager assetManager = getAssets();
+        final String pathToInternalDirectory = getFilesDir().getAbsolutePath();
+        CreateObjectNative(assetManager, pathToInternalDirectory);
 
         mGLSurfaceView = new GLSurfaceView(this);
 
@@ -55,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mGLSurfaceView.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        DeleteObjectNative();
+
     }
 
     static {

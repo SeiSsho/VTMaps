@@ -22,13 +22,22 @@ JNIHelper::~JNIHelper() {
 }
 
 void JNIHelper::Init(JNIEnv *env, jobject obj, jobject assetManager, jstring pathToInternalDir) {
+    p_apkAssetManager = AAssetManager_fromJava(env, assetManager);
 
+    //Save app internal data storage path -- we will extract assets and save here
+    const char *cPathToInternalDir;
+    cPathToInternalDir = env->GetStringUTFChars(pathToInternalDir, NULL ) ;
+    _apkInternalPath = std::string(cPathToInternalDir);
+    env->ReleaseStringUTFChars(pathToInternalDir, cPathToInternalDir);
+
+    //mutex for thread safety
+    pthread_mutex_init(&_threadMutex, NULL);
 }
 
 bool JNIHelper::ExtractAssetReturnFilename(std::string assetName, std::string &filename,
                                            bool checkIfFileIsAvailable) {
     // construct the filename in internal storage by concatenating with path to internal storage
-    filename = _apkInternalPath + "/" + std::filesystem::path(assetName).filename().string();
+    filename = _apkInternalPath + "/" + std::filesystem::path(assetName).filename().c_str();
     // check if the file was previously extracted and is available in app's internal dir
     FILE* file = fopen(filename.c_str(), "rb");
     if (file && checkIfFileIsAvailable) {
@@ -40,7 +49,6 @@ bool JNIHelper::ExtractAssetReturnFilename(std::string assetName, std::string &f
 
     // let us look for the file in assets
     bool result = false;
-
     // AAsset objects are not thread safe and need to be protected with mutex
     pthread_mutex_lock( &_threadMutex);
 
@@ -65,7 +73,6 @@ bool JNIHelper::ExtractAssetReturnFilename(std::string assetName, std::string &f
 
     pthread_mutex_unlock( &_threadMutex);
     return result;
-
 }
 
 bool JNIHelper::ReadFileFromAssetsToBuffer(const char *filename, std::vector<uint8_t> *bufferRef) {

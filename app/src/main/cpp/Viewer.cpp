@@ -3,9 +3,9 @@
 #include "Material/DefaultMaterial.h"
 #include "graphics/GLUtils.h"
 
+
 Viewer::Viewer() {
-    Material* material = new DefaultMaterial();
-    _sphere = std::make_shared<Sphere>(material);
+
 }
 
 Viewer::~Viewer() {
@@ -22,6 +22,17 @@ void Viewer::Create() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
+
+    Material* material = new DefaultMaterial();
+    _sphere = std::make_shared<Sphere>(material);
+
+    std::string earthPth;
+    if (g_HelperObject->ExtractAssetReturnFilename("Shader/albedo.png", earthPth)) {
+        __android_log_print(ANDROID_LOG_INFO, "FILE", "file %s exist", earthPth.c_str());
+    } else {
+        __android_log_print(ANDROID_LOG_ERROR, "FILE", "file %s not found", earthPth.c_str());
+    }
+
 }
 
 void Viewer::Change(int width, int height) {
