@@ -3,9 +3,9 @@
 //
 
 #include "Image1.h"
-#include <android/log.h>
 
-Image1::Image1(const char *path, bool isFlipVertical, int desiredChannel) {
+Image1::Image1(const char *path, bool isFlipVertical, int desiredChannel)
+:_numChannel(desiredChannel) {
     stbi_set_flip_vertically_on_load(isFlipVertical);
     ModifyNumberChannelIfNeeded();
     ReadImageData(path);
@@ -60,7 +60,7 @@ void Image1::ReadImageData(const char *path) {
     _data = stbi_load(path, &_width, &_height, nullptr,
                                                        _numChannel);
     if (!_data)
-        __android_log_print(ANDROID_LOG_ERROR, "IMAGE", "READ IMAGE FAILURE");
+        LOG_ERROR("IMAGE", "Read image failure");
 }
 
 void Image1::ModifyNumberChannelIfNeeded() {

@@ -1,7 +1,6 @@
 #include "Viewer.h"
-#include "Material/PhongMaterial.h"
-#include "Material/DefaultMaterial.h"
-#include "graphics/GLUtils.h"
+#include "Resource/Material/PhongMaterial.h"
+#include "Resource/Material/DefaultMaterial.h"
 
 
 Viewer::Viewer() {
@@ -27,12 +26,13 @@ void Viewer::Create() {
     _sphere = std::make_shared<Sphere>(material);
 
     std::string earthPth;
-    if (g_HelperObject->ExtractAssetReturnFilename("Shader/albedo.png", earthPth)) {
+    if (JNIHelper::ExtractAssetReturnFilename("albedo.png", earthPth)) {
         __android_log_print(ANDROID_LOG_INFO, "FILE", "file %s exist", earthPth.c_str());
+        LOG_INFO("EARTH PATH", "%s", earthPth.c_str());
     } else {
         __android_log_print(ANDROID_LOG_ERROR, "FILE", "file %s not found", earthPth.c_str());
     }
-
+    LOG_INFO("EARTH PATH", "%s", earthPth.c_str());
 }
 
 void Viewer::Change(int width, int height) {
@@ -55,39 +55,4 @@ void Viewer::Draw() {
     glClearColor(1.0F, 1.0F, 1.0F, 1.0F);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     _sphere->Draw(*_mainCamera.get());
-}
-
-Viewer *viewer;
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_thanhdo_vtmaps_MainRenderer_SurfaceCreate(JNIEnv *env,
-                                                   jclass type,
-                                                   jobject assetManager) {
-    GLUtils::setEnvAndAssetManager(env, assetManager);
-    if (viewer) {
-        delete viewer;
-        viewer = NULL;
-    }
-    viewer = new Viewer();
-    viewer->Create();
-}
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_thanhdo_vtmaps_MainRenderer_SurfaceChange(JNIEnv *env,
-                                                     jclass type,
-                                                     jint width,
-                                                     jint height) {
-    if (viewer) {
-        viewer->Change(width, height);
-    }
-}
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_thanhdo_vtmaps_MainRenderer_DrawFrame(JNIEnv *env, jclass type) {
-    if (viewer) {
-        viewer->Draw();
-    }
 }

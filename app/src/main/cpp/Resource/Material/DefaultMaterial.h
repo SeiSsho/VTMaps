@@ -11,7 +11,6 @@
 class DefaultMaterial : public Material {
 private:
 //    Texture* _mainTexture;
-    GLuint _mainTexture;
 public:
     DefaultMaterial();
 

@@ -25,6 +25,8 @@ public:
     std::shared_ptr<Texture> GetTexture(const std::string& textureName);
 
     virtual void UpdateShader() = 0;
+
+    bool IsDirty() const { return _dirty; }
 };
 
 

@@ -1,8 +1,7 @@
 #include "Texture.h"
 #include <android/log.h>
 #include <android/asset_manager_jni.h>
-#include "graphics/GLUtils.h"
-
+#include "../Utilities/Logger.h"
 
 
 Texture::~Texture() {
@@ -106,8 +105,8 @@ Texture::Texture(const Image1 &image, const Texture::Setting &setting) {
         default:
             break;
     }
-    if (!this->_id) {
-        __android_log_print(ANDROID_LOG_ERROR, "TEXTURE", "Create texture failure");
+    if (!_id) {
+        LOG_ERROR("TEXTURE", "Create texture failure");
     }
 }
 
@@ -120,16 +119,21 @@ void Texture::Create2DTexture(const Image1 &image, const Texture::Setting &setti
 
     BindImageDataToTexture(image, setting);
 
-    if (setting.MaxMipmapLevel >= 0)
+    // TODO: set max level of mipmap
+    if (setting.MaxMipmapLevel > 0)
         glGenerateMipmap(GL_TEXTURE_2D);
 
     ConfigureFilterMode(setting);
     ConfigureWrapMode(setting);
 
+    // Unbind for unwitting modify
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Texture::BindImageDataToTexture(const Image1 &image, const Texture::Setting &setting) {
+    if (image.GetData() == nullptr) {
+        LOG_ERROR("VIEWER", "Image data is null");
+    }
     GLenum dataFormat;
     switch (_numChannel) {
         case 1:
@@ -149,12 +153,10 @@ void Texture::BindImageDataToTexture(const Image1 &image, const Texture::Setting
             dataFormat = GL_RGBA;
             break;
         default:
-//            APP_ERROR("Unsupported texture format!");
+            LOG_ERROR("TEXTURE", "Unsupported texture format");
             return;
     }
-    if (image.GetData() == nullptr) {
-        __android_log_print(ANDROID_LOG_ERROR, "TEXTURE", "Image data is null");
-    }
+
 
     glTexImage2D(GL_TEXTURE_2D,
                  0,
@@ -166,21 +168,12 @@ void Texture::BindImageDataToTexture(const Image1 &image, const Texture::Setting
                  image.GetData());
 }
 
-Texture::Texture(const char *path) {
-    _id = GLUtils::loadTexture(path);
+Texture::Texture(const char *path, const Setting& setting) {
+    std::string filename;
+    if (!JNIHelper::ExtractAssetReturnFilename(path, filename)) {
 
-    glBindTexture(GL_TEXTURE_2D, _id);
-
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    // Trilinear
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-    glBindTexture(GL_TEXTURE_2D, 0);
+    }
+    Image1 img(filename.c_str());
 }
 
 template<typename T>
@@ -204,7 +197,7 @@ void Texture::BindImageDataToTexture(const Image<T>& image, const Texture::Setti
             dataFormat = GL_RGBA;
             break;
         default:
-//            APP_ERROR("Unsupported texture format!");
+            LOG_ERROR("TEXTURE", "Unsupported texture format");
             return;
     }
 

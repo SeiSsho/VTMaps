@@ -6,11 +6,12 @@
 #define VTMAPS_IMAGE1_H
 
 #include "Image.h"
+#include "../Utilities/Logger.h"
 
 class Image1 {
 private:
     int _width, _height, _numChannel;
-    unsigned char *  _data;
+    unsigned char*  _data;
 
 public:
     /// \brief

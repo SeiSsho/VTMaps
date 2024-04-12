@@ -3,7 +3,7 @@
 //
 
 #include "Plain.h"
-#include "Material/DefaultMaterial.h"
+#include "Resource/Material/DefaultMaterial.h"
 
 Plain::Plain() {
     const float vertices[] = {

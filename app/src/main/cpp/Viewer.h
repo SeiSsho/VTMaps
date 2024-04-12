@@ -7,7 +7,6 @@
 #include "Utilities/JNIHelper.h"
 
 
-
 class Viewer {
 private:
     std::shared_ptr<Camera> _mainCamera;

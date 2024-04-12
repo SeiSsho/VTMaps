@@ -4,8 +4,10 @@
 
 #include "Camera.h"
 
-Camera::Camera(int width, int height, const glm::vec3 &position,
-               const glm::vec3 &eulerAngles, const Projection& projection,
+Camera::Camera(int width, int height,
+               const glm::vec3 &position,
+               const glm::vec3 &eulerAngles,
+               const Projection& projection,
                float fov, float nearClipping, float farClipping)
 : _width(width), _height(height),
   _projection(projection),
@@ -22,8 +24,7 @@ glm::mat4 Camera::GetViewMatrix() const {
 
 glm::mat4 Camera::GetProjectionMatrix() const {
     float ratio = (float) _width / _height;
-    switch (_projection)
-    {
+    switch (_projection) {
         case Projection::Perspective:
             return glm::perspective(glm::radians(_fov), ratio, _nearClipping, _farClipping);
         case Projection::Ortho:

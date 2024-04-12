@@ -9,6 +9,7 @@
 
 #include "Image.h"
 #include "Image1.h"
+#include "../Utilities/JNIHelper.h"
 
 class Texture {
 public:
@@ -101,7 +102,7 @@ private:
 public:
     template<typename T>
     Texture(const Image<T>& image, const Setting& setting);
-    Texture(const char* path);
+    Texture(const char* path, const Setting& setting);
     ~Texture();
 
     Texture(const Image1& image, const Setting& setting);

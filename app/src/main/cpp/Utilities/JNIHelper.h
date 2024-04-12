@@ -20,24 +20,30 @@ extern "C" {
 
 class JNIHelper {
 private:
-    mutable pthread_mutex_t _threadMutex;
+    static std::shared_ptr<JNIHelper> p_instance;
     std::string _apkInternalPath;
+    mutable pthread_mutex_t _threadMutex;
     AAssetManager* p_apkAssetManager;
 
 public:
     JNIHelper(JNIEnv *env, jobject obj, jobject assetManager, jstring pathToInternalDir);
 
-    ~JNIHelper();
+    ~JNIHelper() = default;
 
-    void Init(JNIEnv *env, jobject obj, jobject assetManager, jstring pathToInternalDir);
+    static void Init(JNIEnv *env, jobject obj, jobject assetManager, jstring pathToInternalDir);
+    static void Clean();
 
-    bool ExtractAssetReturnFilename(std::string assetName, std::string &filename,
+    /// Get resource path in folder <i>assets</i> to use in C/C++ code
+    /// \note this will extract path, then create a file ( <b>it duplicate the file, must find better way or</b> path to use in C/C++ code
+    /// \param assetName Asset path in folder "<i>assets</i>"
+    /// \param filename path to use in C/C++ code
+    /// \param checkIfFileIsAvailable
+    /// \return <i>filename</i> is valid or invalid
+    static bool ExtractAssetReturnFilename(std::string assetName, std::string &filename,
                                     bool checkIfFileIsAvailable = false);
 
-    bool ReadFileFromAssetsToBuffer(const char *filename, std::vector<uint8_t> *bufferRef);
+    static bool ReadFileFromAssetsToBuffer(const char *filename, std::vector<uint8_t> *bufferRef);
 };
-
-extern JNIHelper *g_HelperObject;
 
 #ifdef __cplusplus
 }

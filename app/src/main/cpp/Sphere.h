@@ -9,7 +9,7 @@
 #include <jni.h>
 
 #include <glm/glm.hpp>
-#include "Material/Material.h"
+#include "Resource/Material/Material.h"
 #include "Mesh.h"
 #include "Camera.h"
 

@@ -5,7 +5,7 @@
 #ifndef VTMAPS_PLAIN_H
 #define VTMAPS_PLAIN_H
 
-#include "Material/Material.h"
+#include "Resource/Material/Material.h"
 #include <memory>
 
 class Plain {
