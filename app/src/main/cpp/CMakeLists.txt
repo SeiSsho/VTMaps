@@ -33,10 +33,12 @@ find_library(log-lib log)
 
 find_package(glm REQUIRED)
 find_package(stb REQUIRED)
+find_package(magic_enum REQUIRED)
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
         glm::glm
         stb::stb
+        magic_enum::magic_enum
         EGL
         GLESv3
         android

@@ -1,0 +1,10 @@
+#ifndef VTMAPS_DEFAULTMATERIAL_H
+#define VTMAPS_DEFAULTMATERIAL_H
+
+
+class DefaultMaterial {
+
+};
+
+
+#endif //VTMAPS_DEFAULTMATERIAL_H

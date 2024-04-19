@@ -29,7 +29,7 @@ bool JNIHelper::ExtractAssetReturnFilename(std::string assetName, std::string &f
     if (file && checkIfFileIsAvailable) {
         __android_log_print(ANDROID_LOG_INFO, "JNIHelper", "Found extracted file in assets: %s", filename.c_str());
         fclose(file);
-        pthread_mutex_unlock( &p_instance->_threadMutex);
+//        pthread_mutex_unlock( &p_instance->_threadMutex);
         return true;
     }
 
@@ -39,7 +39,8 @@ bool JNIHelper::ExtractAssetReturnFilename(std::string assetName, std::string &f
     pthread_mutex_lock( &p_instance->_threadMutex);
 
     // Open file
-    AAsset* asset = AAssetManager_open(p_instance->p_apkAssetManager, assetName.c_str(), AASSET_MODE_STREAMING);
+    AAsset* asset = AAssetManager_open(p_instance->p_apkAssetManager,
+                                       assetName.c_str(), AASSET_MODE_STREAMING);
 
     char buf[BUFSIZ];
     int nb_read = 0;

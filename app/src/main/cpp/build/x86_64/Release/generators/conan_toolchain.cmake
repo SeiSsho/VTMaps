@@ -88,7 +88,7 @@ list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 # The Conan local "generators" folder, where this toolchain is saved.
 list(PREPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_LIST_DIR} )
 list(PREPEND CMAKE_PROGRAM_PATH "C:/Users/tts/.conan2/p/ninjae2ad385cd85df/p/bin")
-list(PREPEND CMAKE_INCLUDE_PATH "C:/Users/tts/.conan2/p/glmdf97922a12435/p/include" "C:/Users/tts/.conan2/p/stbf6cb8d59f52a8/p/include")
+list(PREPEND CMAKE_INCLUDE_PATH "C:/Users/tts/.conan2/p/glmdf97922a12435/p/include" "C:/Users/tts/.conan2/p/stbf6cb8d59f52a8/p/include" "C:/Users/tts/.conan2/p/magicad75af1effc2a/p/include")
 
 if(NOT DEFINED CMAKE_FIND_ROOT_PATH_MODE_PACKAGE OR CMAKE_FIND_ROOT_PATH_MODE_PACKAGE STREQUAL "ONLY")
     set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE "BOTH")

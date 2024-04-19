@@ -1,6 +1,7 @@
 [requires]
 glm/cci.20230113
 stb/cci.20230920
+magic_enum/0.9.5
 
 [generators]
 CMakeToolchain
