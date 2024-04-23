@@ -7,6 +7,6 @@
 #define LOG_ERROR(tag, ...) __android_log_print(ANDROID_LOG_ERROR, tag, __VA_ARGS__)
 #define LOG_DEBUG(tag, ...) __android_log_print(ANDROID_LOG_DEBUG, tag, __VA_ARGS__)
 #define LOG_FATAL(tag, ...) __android_log_print(ANDROID_LOG_FATAL, tag, __VA_ARGS__)
-#define LOG_WARN(tag, ...) __android_log_print(ANDROID_LOG_WARNING, tag, __VA_ARGS__)
+#define LOG_WARN(tag, ...) __android_log_print(ANDROID_LOG_WARN, tag, __VA_ARGS__)
 
 #endif //VTMAPS_LOGGER_H

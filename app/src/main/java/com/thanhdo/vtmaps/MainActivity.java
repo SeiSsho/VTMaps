@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         setContentView(mGLSurfaceView);
+        mGLSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
     @Override

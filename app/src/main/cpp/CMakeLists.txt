@@ -17,7 +17,6 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         Resource/Shader.h Resource/Shader.cpp
         Sphere.h Sphere.cpp
         Resource/Texture.h Resource/Texture.cpp
-        Transform.h Transform.cpp
         Vertex.h
         Viewer.h Viewer.cpp
 

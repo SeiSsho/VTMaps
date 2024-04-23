@@ -3,6 +3,7 @@
 
 #include <GLES2/gl2.h>
 #include <string>
+#include <string_view>
 #include <unordered_map>
 #include <vector>
 #include <filesystem>
