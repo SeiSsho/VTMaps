@@ -42,3 +42,17 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         GLESv3
         android
         ${log-lib})
+
+
+find_package(googletest REQUIRED CONFIG)
+find_package(junit-gtest REQUIRED CONFIG)
+
+#add_library(adder OBJECT adder.cpp)
+
+add_library(app_tests SHARED "Unit Test/test.cpp")
+target_link_libraries(app_tests
+        PRIVATE
+#        $<TARGET_OBJECTS:adder>
+        googletest::gtest
+        junit-gtest::junit-gtest
+)
