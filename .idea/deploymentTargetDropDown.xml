@@ -29,11 +29,22 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-26T02:13:50.924801400Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-26T07:45:39.442235600Z" />
         </State>
       </entry>
       <entry key="app">
         <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\tts\.android\avd\Pixel_4_API_30.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
           <targetSelectedWithDropDown>
             <Target>
               <type value="QUICK_BOOT_TARGET" />
@@ -45,7 +56,7 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-19T10:00:07.775128700Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-26T07:53:24.911991100Z" />
         </State>
       </entry>
     </value>

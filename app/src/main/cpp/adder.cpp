@@ -1,6 +1,6 @@
 #include "adder.h"
+#include <gmath.h>
 
 int add(int a, int b) { return a + b; }
 
-//#include <gmath.h>
-//int tGmath(unsigned int i) { return gpower(i); }
+int powerOf2(unsigned int i) { return gpower(i); }

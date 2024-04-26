@@ -1,13 +1,12 @@
 #include <jni.h>
 #include <string>
-#include <VG/openvg.h>
-#include <VG/vgu.h>
-#include <VG/vgext.h>
-#include <VG/vgplatform.h>
+#include <gperf.h>
+#include <gmath.h>
+#include "adder.h"
 
 extern "C" JNIEXPORT jstring Java_com_thanhdo_vtmaps_MainActivity_stringFromJNI(
         JNIEnv *env,
         jobject /* this */) {
-    std::string hello = "Hello from C++";
+    std::string hello = "Hello from C++" + std::to_string(powerOf2(2));
     return env->NewStringUTF(hello.c_str());
 }

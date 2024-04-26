@@ -14,7 +14,7 @@ namespace Engine {
     }
 
     void Viewer::Create() {
-        _mainCamera = std::make_unique<Camera>(1, 1, );
+//        _mainCamera = std::make_unique<Camera>(1, 1, );
         glEnable(GL_BLEND);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
@@ -28,7 +28,5 @@ namespace Engine {
     void Viewer::Draw() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
-
-
 }
 
