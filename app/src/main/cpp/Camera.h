@@ -4,7 +4,7 @@
 
 #ifndef VTMAPS_CAMERA_H
 #define VTMAPS_CAMERA_H
-
+//#include "VG/openvg.h"
 #include <glm/glm.hpp>
 #include <glm/detail/type_quat.hpp>
 #include <glm/gtc/type_ptr.hpp>

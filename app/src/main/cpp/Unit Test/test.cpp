@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
-
+#include "../adder.h"
 TEST(adder, adder) {
-EXPECT_EQ(3, 3);
+    EXPECT_EQ(3, add(1, 2));
 }
 
 TEST(t, t1) {
