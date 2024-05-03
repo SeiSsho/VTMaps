@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.thanhdo.vtmaps.Graphics.OpenGLView;
 import com.thanhdo.vtmaps.databinding.ActivityMainBinding;
 
 import java.io.IOException;
@@ -23,15 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
     public native String stringFromJNI();
 
-    private ActivityMainBinding binding;
-    private GLSurfaceView mGLSurfaceView;
+    private ActivityMainBinding _binding;
+    private OpenGLView _openGLSurfaceView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        AssetManager assetManager = getAssets();
-//        final String pathToInternalDirectory = getFilesDir().getAbsolutePath();
+        AssetManager assetManager = getAssets();
+        final String pathToInternalDirectory = getFilesDir().getAbsolutePath();
 //        CreateObjectNative(assetManager, pathToInternalDirectory);
 //
 //        mGLSurfaceView = new GLSurfaceView(this);
@@ -48,12 +49,26 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        setContentView(mGLSurfaceView);
 //        mGLSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        _binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(_binding.getRoot());
         TextView tv = (TextView) findViewById(R.id.sample_text);
         tv.setText(stringFromJNI());
-
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this._openGLSurfaceView.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this._openGLSurfaceView.onResume();
+    }
 }

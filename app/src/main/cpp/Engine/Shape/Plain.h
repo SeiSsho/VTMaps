@@ -5,10 +5,12 @@
 #ifndef VTMAPS_PLAIN_H
 #define VTMAPS_PLAIN_H
 
+#include "Shape.h"
 
-class Plain {
+namespace Engine {
+    class Plain : public Shape {
 
-};
-
+    };
+}
 
 #endif //VTMAPS_PLAIN_H

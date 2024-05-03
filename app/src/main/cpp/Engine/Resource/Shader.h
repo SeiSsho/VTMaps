@@ -22,7 +22,6 @@ namespace Engine::Resource {
     public:
         class Parameter;
     private:
-        static const int MAX_LENGTH_PARAM_NAME = 128;
         std::unordered_map<std::string, GLint> _uniformLocation;
         GLint _id;
 

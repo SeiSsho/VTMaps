@@ -8,6 +8,8 @@ add_library(amanithvg SHARED IMPORTED)
 set_target_properties(amanithvg PROPERTIES IMPORTED_LOCATION
         ${distribution_DIR}/amanithvg/lib/android/${ANDROID_ABI}/gle/standalone/libAmanithVG.so)
 
+################## This for test, remove in future ###################
+### check in target_include_directories() and target_link_libraries()
 add_library(gmath STATIC IMPORTED)
 set_target_properties(gmath PROPERTIES IMPORTED_LOCATION
         ${distribution_DIR}/gmath/lib/${ANDROID_ABI}/libgmath.a)
@@ -15,7 +17,7 @@ set_target_properties(gmath PROPERTIES IMPORTED_LOCATION
 add_library(gperf SHARED IMPORTED)
 set_target_properties(gperf PROPERTIES IMPORTED_LOCATION
         ${distribution_DIR}/gperf/lib/${ANDROID_ABI}/libgperf.so)
-
+######################################################################
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -DENGINE_GLE=1")
 
 add_library(${CMAKE_PROJECT_NAME} SHARED

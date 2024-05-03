@@ -9,7 +9,6 @@
 #include <unordered_map>
 #include <typeinfo>
 
-
 #include "../../Utilities/Logger.h"
 
 namespace Engine::System {
